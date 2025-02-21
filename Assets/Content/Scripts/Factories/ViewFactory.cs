@@ -1,35 +1,29 @@
-﻿using System.Linq;
-using Content.Scripts.Configs;
+﻿using Content.Scripts.Configs;
 using Content.Scripts.MVVM;
+using Content.Scripts.Services;
 using Cysharp.Threading.Tasks;
-using Game.MVVM;
 using UnityEngine;
 using VContainer;
 
 namespace Content.Scripts.Factories
 {
-    public class ViewFactory
+    public class ViewFactory : Factory<ViewsConfig>
     {
-        private readonly IObjectResolver _objectResolver;
-        private readonly ViewsConfig _viewsConfig;
+        [Inject] private ViewModelFactory _viewModelFactory;
+        
         private Transform _parent;
-
-        public ViewFactory(IObjectResolver objectResolver, ViewsConfig viewsConfig)
-        {
-            _objectResolver = objectResolver;
-            _viewsConfig = viewsConfig;
-        }
 
         public void Initialize()
         {
-            _parent = Object.Instantiate(_viewsConfig.Canvas, null).transform;
+            _parent = Object.Instantiate(Config.Canvas, null).transform;
         }
 
         public async UniTask<T> Create<T>() where T : View
         {
-            var prefab = await _viewsConfig.Load<T>();
+            var prefab = await Config.Load<T>();
             var view = Object.Instantiate(prefab, _parent);
-            _objectResolver.Inject(view);
+            view.Inject(_viewModelFactory);
+            view.Init();
             return view;
         }
     }

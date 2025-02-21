@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Canvas>k__BackingField: {fileID: 3199663620979968048, guid: bd500b9d065f3cc40b570c2dffae04d0, type: 3}
   <Views>k__BackingField:
-  - <Asset>k__BackingField:
+  - _type:
+      assemblyQualifiedName: TestView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    <Asset>k__BackingField:
       m_AssetGUID: 79f4e2fe7db62af4191d317272a5416f
       m_SubObjectName: 
       m_SubObjectGUID: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - <Asset>k__BackingField:
+  - _type:
+      assemblyQualifiedName: Content.Scripts.UI.DiaryView, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    <Asset>k__BackingField:
       m_AssetGUID: 185320aae5687834ca00c88b7b6746b8
       m_SubObjectName: 
       m_SubObjectGUID: 

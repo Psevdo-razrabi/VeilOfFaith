@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Content.Scripts.Configs;
 using Content.Scripts.Factories;
 using Content.Scripts.MVVM;
-using Game.MVVM;
 
 namespace Content.Scripts.Services
 {

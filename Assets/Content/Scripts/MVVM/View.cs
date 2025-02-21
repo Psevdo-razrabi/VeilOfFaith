@@ -12,10 +12,9 @@ namespace Content.Scripts.MVVM
         protected T ViewModel; 
         protected Binder Binder;
 
-        [Inject]
-        public void Construct(ViewModelFactory viewModelFactory)
+        public override void Init()
         {
-            ViewModel = viewModelFactory.Create<T>();
+            ViewModel = ViewModelFactory.Create<T>();
             Binder = ViewModel.Binder;
         }
 
@@ -32,6 +31,14 @@ namespace Content.Scripts.MVVM
 
     public abstract class View : MonoBehaviour
     {
+        protected ViewModelFactory ViewModelFactory;
+        
+        public void Inject(ViewModelFactory viewModelFactory)
+        {
+            ViewModelFactory = viewModelFactory;
+        }
+        
+        public virtual void Init() {}
         public virtual void Open() {}
         public virtual void Close() {}
     }

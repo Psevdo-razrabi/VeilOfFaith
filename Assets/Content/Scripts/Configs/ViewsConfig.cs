@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.Scripts.MVVM;
+using Content.Scripts.Utils;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.Util;
 
 namespace Content.Scripts.Configs
 {
@@ -17,23 +17,18 @@ namespace Content.Scripts.Configs
          
         public async UniTask<T> Load<T>() where T : View
         {
-            var viewData = Views
-                .FirstOrDefault(d => d.Asset.GetType().IsSubclassOf(typeof(AssetReferenceT<T>)));
-
-            if (viewData == null)
-            {
-                throw new InvalidOperationException($"No ViewData found for type {typeof(T)}");
-            }
-
-            var handle = await Addressables.LoadAssetAsync<GameObject>(viewData.Asset.AssetGUID);
-            var view = handle.GetComponent<T>();
-            return view;
+            var data = Views.FirstOrDefault(d => d.Type == typeof(T));
+            var handle = await Addressables.LoadAssetAsync<GameObject>(data.Asset.AssetGUID);
+            var component = handle.GetComponent<T>();
+            return component;
         }
     }
 
     [Serializable]
     public class ViewData
     {
-        [field: SerializeField] public AssetReferenceT<View> Asset { get; private set; }
+        [SerializeField, TypeFilter(typeof(View))] private SerializableType _type;
+        [field: SerializeField] public AssetReferenceGameObject Asset { get; private set; }
+        public Type Type => _type;
     }
 }

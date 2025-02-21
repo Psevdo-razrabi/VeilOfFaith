@@ -1,21 +1,18 @@
-using Content.Scripts.Installer;
-using Content.Scripts.Services;
 using UnityEngine;
-using VContainer;
 
-namespace Game.DI
+namespace Content.Scripts.Installer
 {
     public class BootstrapEntryPoint : MonoBehaviour
     {
         [SerializeField] private BootstrapLifetimeScope _lifetimeScope;
+        [SerializeField] private AppManager _appManager;
         
         private void Awake()
         {
             DontDestroyOnLoad(_lifetimeScope);
             _lifetimeScope.Build();
-            
-            var viewsService = _lifetimeScope.Container.Resolve<ViewsService>();
-            viewsService.Initialize();
+
+            _appManager.Initialize(_lifetimeScope.Container);
         }
     }
 }
