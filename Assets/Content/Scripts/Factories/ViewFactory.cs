@@ -1,6 +1,5 @@
 ﻿using Content.Scripts.Configs;
 using Content.Scripts.MVVM;
-using Content.Scripts.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;

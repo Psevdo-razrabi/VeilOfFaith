@@ -1,25 +1,26 @@
-using UnityEngine;
+using Content.Scripts.Configs;
+using Content.Scripts.States;
 using VContainer;
 
 namespace Content.Scripts.Services
 {
-    public abstract class Service<TConfig> : IService where TConfig : ScriptableObject
+    public abstract class Service<TConfig, TState> : Service
+        where TConfig : Config
+        where TState : State
     {
-        [Inject] protected TConfig Config;
-    }
-
-    public interface IService
-    {
+        public TConfig Config { get; private set; }
+        public TState State { get; private set; }
         
+        [Inject]
+        public void Inject(TConfig config, TState state)
+        {
+            Config = config;
+            State = state;
+        }
     }
 
-    public interface ITickable
+    public abstract class Service
     {
-        void Tick();
-    }
-
-    public interface IInitializable
-    {
-        void Initialize();
+        public virtual void Init() {}
     }
 }

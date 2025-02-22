@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Content.Scripts.Configs;
 using Content.Scripts.MVVM;
 using VContainer;
 
 namespace Content.Scripts.Factories
 {
-    public class ViewModelFactory
+    public class ViewModelFactory : Factory<NullConfig>
     {
         private readonly IObjectResolver _container;
         private readonly Dictionary<Type, ViewModel> _viewModels = new();

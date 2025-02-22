@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72b2e04c03e4c349a870df2cf477954, type: 3}
   m_Name: ControllersConfig
   m_EditorClassIdentifier: 
-  <Controllers>k__BackingField:
+  _controllers:
   - _type:
       assemblyQualifiedName: Content.Scripts.Factories.PlayerController, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    <Asset>k__BackingField:
+    _asset:
       m_AssetGUID: 
       m_SubObjectName: 
       m_SubObjectGUID: 

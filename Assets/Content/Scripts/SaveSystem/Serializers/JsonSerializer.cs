@@ -2,7 +2,7 @@
 
 namespace SaveSystem.Serializers
 {
-    public class JsonSerizalizer : ISerializer
+    public class JsonSerializer : ISerializer
     {
         public string Serialize<T>(T obj)
         {

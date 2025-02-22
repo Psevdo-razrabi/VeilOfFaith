@@ -11,8 +11,8 @@ namespace SaveSystem
 {
     public class UnitOfWorks : MonoBehaviour, IUnitOfWorks
     {
-        //public InventoryRepository Inventory { get; private set; }
-        //public QuickBarRepository QuickBar { get; private set; }
+        public InventoryRepository Inventory { get; private set; }
+        public QuickBarRepository QuickBar { get; private set; }
         public DataContext DataContext { get; private set; }
 
         private async void Binding(ESaveType saveType, ESaveSlot saveSlot) //вызывается при загрузке сцены
@@ -33,8 +33,8 @@ namespace SaveSystem
         {
             DataContext = dataContext;
 
-            //Inventory = new InventoryRepository(DataContext);
-            //QuickBar = new QuickBarRepository(DataContext);
+            Inventory = new InventoryRepository(DataContext);
+            QuickBar = new QuickBarRepository(DataContext);
         }
 
         private void OnEnable()

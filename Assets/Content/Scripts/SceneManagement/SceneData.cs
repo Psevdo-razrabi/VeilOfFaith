@@ -1,14 +1,14 @@
 ﻿using System;
-using Eflatun.SceneReference;
 using Loader;
+using TriInspector;
 
 namespace SceneManagment
 {
     [Serializable]
     public struct SceneData
     {
-        public SceneReference scene;
+        [Scene] public string scene;
         public TypeScene typeScene;
-        public string Name => scene.Name;
+        public string Name => scene;
     }
 }

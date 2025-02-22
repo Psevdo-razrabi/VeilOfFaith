@@ -1,6 +1,5 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Eflatun.SceneReference;
 using Loader;
 using R3;
 using SaveSystem.Enums;
@@ -35,11 +34,8 @@ namespace SceneManagment
 
             var scene = sceneGroup.FindSceneByReference(typeScene);
 
-            if (scene.State == SceneReferenceState.Addressable)
-            {
-                LoadSceneDelegate loadSceneDelegate = async (sceneType) => _isLoadScene = await LoadSceneFromBundle(sceneType, progress, saveType, saveSlot);
-                OnLoadScene?.Invoke(loadSceneDelegate, scene.Path);
-            }
+            LoadSceneDelegate loadSceneDelegate = async (sceneType) => _isLoadScene = await LoadSceneFromBundle(sceneType, progress, saveType, saveSlot);
+            OnLoadScene?.Invoke(loadSceneDelegate, scene);
 
             await UniTask.WaitUntil(() => _isLoadScene && _isLoadResources);
             SceneIsLoad?.Invoke();

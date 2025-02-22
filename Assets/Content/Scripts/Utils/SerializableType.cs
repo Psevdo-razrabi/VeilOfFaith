@@ -21,7 +21,7 @@ namespace Content.Scripts.Utils
         {
             if (!TryGetType(assemblyQualifiedName, out var type))
             {
-                Debug.LogError($"Type {assemblyQualifiedName} not found");
+                //Debug.LogError($"Type {assemblyQualifiedName} not found");
                 return;
             }
 
@@ -56,11 +56,10 @@ namespace Content.Scripts.Utils
                 .First(x => x.FullName == "Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null");
             var filteredTypes = assembly.GetTypes()
                 .Where(t => typeFilter == null ? DefaultFilter(t) : typeFilter.Filter(t))
-                .Where(x => x.Name.Contains("View") || x.Name.Contains("Controller"))
                 .OrderBy(x => x.Name)
                 .ToList();
 
-            typeNames = filteredTypes.Select(t => t.ReflectedType == null ? t.Name : $"t.ReflectedType.Name + t.Name")
+            typeNames = filteredTypes.Select(t => t.ReflectedType == null ? t.Name : $"None")
                 .ToArray();
             typeFullNames = filteredTypes.Select(t => t.AssemblyQualifiedName).ToArray();
         }

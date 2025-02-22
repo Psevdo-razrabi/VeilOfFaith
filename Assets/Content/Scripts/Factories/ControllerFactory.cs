@@ -1,5 +1,4 @@
 using Content.Scripts.Configs;
-using Content.Scripts.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
@@ -9,7 +8,6 @@ namespace Content.Scripts.Factories
     public class ControllerFactory : Factory<ControllersConfig>
     {
         private readonly IObjectResolver _objectResolver;
-        private readonly ControllersConfig _controllersConfig;
 
         public ControllerFactory(IObjectResolver objectResolver)
         {

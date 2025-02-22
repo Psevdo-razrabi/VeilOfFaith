@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using Content.Scripts.Configs;
 using Content.Scripts.Factories;
 using Content.Scripts.MVVM;
+using Content.Scripts.States;
 
 namespace Content.Scripts.Services
 {
-    public class ViewsService
+    public class ViewsService : Service<ViewsConfig, NullState>
     {
-        public View CurrentView { get; private set; }
-        
         private readonly ViewFactory _viewFactory;
         private readonly ScenesService _scenesService;
         private readonly Dictionary<Type, View> _views = new();
         private readonly Stack<View> _viewsStack = new();
+        
+        public View CurrentView { get; private set; }
 
         public ViewsService(ViewFactory viewFactory, ScenesService scenesService)
         {

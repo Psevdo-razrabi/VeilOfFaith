@@ -7,18 +7,15 @@ namespace Content.Scripts.Installer
 {
     public class ServicesManager
     {
-        private readonly IReadOnlyList<IService> _services;
+        public readonly IReadOnlyList<Service> Services;
         private readonly IReadOnlyList<ITickable> _tickableServices;
         
         public ServicesManager(IObjectResolver objectResolver)
         {
-            _services = objectResolver.Resolve<IReadOnlyList<IService>>();
-            _tickableServices = _services.OfType<ITickable>().ToList();
-        }
-        
-        public void Initialize()
-        {
-            foreach (var service in _services.OfType<IInitializable>())
+            Services = objectResolver.Resolve<IReadOnlyList<Service>>();
+            _tickableServices = Services.OfType<ITickable>().ToList();
+            
+            foreach (var service in Services.OfType<IInitializable>())
             {
                 service.Initialize();
             }
