@@ -17,7 +17,7 @@ MonoBehaviour:
       assemblyQualifiedName: Content.Scripts.Factories.PlayerController, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _asset:
-      m_AssetGUID: 
+      m_AssetGUID: d5c0087814fa5d349b9585dea87f6bf1
       m_SubObjectName: 
       m_SubObjectGUID: 
       m_SubObjectType: 

@@ -1,15 +1,15 @@
 using Content.Scripts.Configs;
-using Content.Scripts.Factories;
+using R3;
 
 namespace Content.Scripts.Services
 {
-    public class PlayerService : Service<NullConfig, PlayerState>
+    public class PlayerService : Service<PlayerConfig, PlayerState>, ITickable
     {
-        private ViewFactory _viewFactory;
-        
-        public PlayerService(ViewFactory viewFactory, ScenesService scenesService)
+        public ReactiveCommand Ticked { get; } = new();
+
+        public void Tick()
         {
-            _viewFactory = viewFactory;
+            Ticked.Execute();
         }
     }
 }

@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 2c6076f64a02f5b44b929426c8a3288c
   m_SerializeEntries:
+  - m_GUID: 2c56de47d874a184a9267c6854c44d23
+    m_Address: Assets/Content/Prefabs/Controllers
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36b8866769f23fb4d9398b9fd31b9168
     m_Address: Assets/Content/ConfigsSO
     m_ReadOnly: 0

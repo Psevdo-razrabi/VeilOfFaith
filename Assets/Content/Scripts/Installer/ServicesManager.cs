@@ -7,21 +7,27 @@ namespace Content.Scripts.Installer
 {
     public class ServicesManager
     {
-        public readonly IReadOnlyList<Service> Services;
-        private readonly IReadOnlyList<ITickable> _tickableServices;
-        
-        public ServicesManager(IObjectResolver objectResolver)
+        private IReadOnlyList<IService> _services;
+        private IReadOnlyList<IInitializable> _initializableServices;
+        private IReadOnlyList<ITickable> _tickableServices;
+
+        [Inject]
+        public void Inject(IReadOnlyList<IService> services)
         {
-            Services = objectResolver.Resolve<IReadOnlyList<Service>>();
-            _tickableServices = Services.OfType<ITickable>().ToList();
-            
-            foreach (var service in Services.OfType<IInitializable>())
+            _services = services;
+            _initializableServices = _services.OfType<IInitializable>().ToList();
+            _tickableServices = _services.OfType<ITickable>().ToList();
+        }
+        
+        public void Awake()
+        {
+            foreach (var service in _initializableServices)
             {
-                service.Initialize();
+                service.Init();
             }
         }
         
-        public void Tick()
+        public void Update()
         {
             foreach (var service in _tickableServices)
             {

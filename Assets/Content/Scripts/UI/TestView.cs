@@ -1,7 +1,11 @@
 using Content.Scripts.MVVM;
-using UnityEngine;
+using VContainer;
 
 public class TestView : View
 {
-    
+    [Inject]
+    private void Inject()
+    {
+        
+    }
 }

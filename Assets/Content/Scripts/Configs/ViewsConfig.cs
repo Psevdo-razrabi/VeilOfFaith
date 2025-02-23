@@ -15,10 +15,7 @@ namespace Content.Scripts.Configs
     {
         [field: SerializeField] public Canvas Canvas { get; private set; }
 
-        [TableList(Draggable = true,
-            HideAddButton = false,
-            HideRemoveButton = false,
-            AlwaysExpanded = false)]
+        [TableList(Draggable = true, HideAddButton = false, HideRemoveButton = false, AlwaysExpanded = false)]
         [SerializeField]
         private List<ViewData> _views;
          

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Content.Scripts.Utils
 {
@@ -59,9 +60,24 @@ namespace Content.Scripts.Utils
                 .OrderBy(x => x.Name)
                 .ToList();
 
+            switch (typeFilter.Scope)
+            {
+                case Scope.Scene:
+                    filteredTypes = filteredTypes.Where(t => IsTypeOnScene(t)).ToList();
+                    break;
+                case Scope.Assets:
+                    filteredTypes = filteredTypes.Where(t => !IsTypeOnScene(t)).ToList();
+                    break;
+            }
+
             typeNames = filteredTypes.Select(t => t.ReflectedType == null ? t.Name : $"None")
                 .ToArray();
             typeFullNames = filteredTypes.Select(t => t.AssemblyQualifiedName).ToArray();
+        }
+        
+        static bool IsTypeOnScene(Type type)
+        {
+            return Object.FindObjectsOfType(type).Length > 0;
         }
 
         static bool DefaultFilter(Type type)
@@ -96,14 +112,23 @@ namespace Content.Scripts.Utils
     public class TypeFilterAttribute : PropertyAttribute
     {
         public Func<Type, bool> Filter { get; }
+        public Scope Scope { get; }
 
-        public TypeFilterAttribute(Type filterType)
+        public TypeFilterAttribute(Type filterType, Scope scope = Scope.All)
         {
             Filter = type => !type.IsAbstract &&
                              !type.IsInterface &&
                              !type.IsGenericType &&
                              type.InheritsOrImplements(filterType);
+            Scope = scope;
         }
+    }
+
+    public enum Scope
+    {
+        All,
+        Assets,
+        Scene,
     }
 
     public static class TypeExtensions

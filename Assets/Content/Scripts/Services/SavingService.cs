@@ -1,52 +1,52 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Content.Scripts.Configs;
 using Content.Scripts.States;
-using R3;
+using Cysharp.Threading.Tasks;
 using SaveSystem.Serializers;
-using VContainer;
 
 namespace Content.Scripts.Services
 {
     public class SavingService : Service<NullConfig, NullState>
     {
-        private IReadOnlyList<State> _states;
+        private readonly IReadOnlyList<State> _states;
         
         private readonly SaveContext _saveContext = new JsonSaveContextLocal(new JsonSerializer());
         
-        private SavingService(IObjectResolver objectResolver)
+        private SavingService(IReadOnlyList<IState> states)
         {
-            _states = objectResolver.Resolve<IReadOnlyList<State>>();
-        }
-        
-        public override void Init()
-        {
-            
+            _states = states.OfType<State>().ToList();
+
+            CreateData();
         }
 
-        public void InitStates(IReadOnlyList<State> states)
+        private void CreateData()
         {
-            _states = states;
+            foreach (var state in _states)
+            {
+                state.SaveContext = _saveContext;
+                state.AddData();
+            }
         }
         
-        public void Save()
+        public async UniTask Save()
         {
             foreach (var state in _states)
             {
                 state.Write();
             }
 
-            _saveContext.Save();
+            await _saveContext.Save();
         }
 
-        public void Load()
+        public async UniTask Load()
         {
+            await _saveContext.Load();
+            
             foreach (var state in _states)
             {
                 state.Read();
             }
-            
-            _saveContext.Load();
         }
     }
 }
