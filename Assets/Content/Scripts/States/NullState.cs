@@ -1,6 +1,8 @@
+using Content.Scripts.StatesData;
+
 namespace Content.Scripts.States
 {
-    public class NullState : State
+    public class NullState : State<NullStateData>
     {
         public override void Read()
         {
@@ -10,4 +12,6 @@ namespace Content.Scripts.States
         {
         }
     }
+    
+    public class NullStateData : StateData {}
 }

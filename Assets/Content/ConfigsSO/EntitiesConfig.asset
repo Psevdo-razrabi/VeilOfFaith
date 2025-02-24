@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d72b2e04c03e4c349a870df2cf477954, type: 3}
-  m_Name: ControllersConfig
+  m_Name: EntitiesConfig
   m_EditorClassIdentifier: 
-  _controllers:
+  _entities:
   - _type:
-      assemblyQualifiedName: Content.Scripts.Factories.PlayerController, Assembly-CSharp,
+      assemblyQualifiedName: Content.Scripts.Controllers.CharacterEntity, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     _asset:
       m_AssetGUID: d5c0087814fa5d349b9585dea87f6bf1

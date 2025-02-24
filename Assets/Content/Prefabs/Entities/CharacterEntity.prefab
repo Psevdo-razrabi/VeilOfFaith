@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3579805727280225064}
   - component: {fileID: 6568358403530054613}
   - component: {fileID: 1621687047835865380}
-  - component: {fileID: 5162572965414624528}
+  - component: {fileID: 7444328809347121435}
   m_Layer: 0
-  m_Name: PlayerController
+  m_Name: CharacterEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5162572965414624528
+--- !u!114 &7444328809347121435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,12 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7717919015651311055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18465fae954a46caacded9bd3b0b0956, type: 3}
+  m_Script: {fileID: 11500000, guid: f7e37d293be2440fa5e4288aca433192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  lookSpeed: 2
-  upDownRange: 60
+  _camera: {fileID: 8307362542107243910}
 --- !u!1 &8002922782612224489
 GameObject:
   m_ObjectHideFlags: 0

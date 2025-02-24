@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 2c6076f64a02f5b44b929426c8a3288c
   m_SerializeEntries:
   - m_GUID: 2c56de47d874a184a9267c6854c44d23
-    m_Address: Assets/Content/Prefabs/Controllers
+    m_Address: Assets/Content/Prefabs/Entities
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     - Configs
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e331483358263a74ba73a3d87906255f
-    m_Address: Assets/Content/Prefabs/Views
+    m_Address: Assets/Content/Prefabs/UI/Views
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

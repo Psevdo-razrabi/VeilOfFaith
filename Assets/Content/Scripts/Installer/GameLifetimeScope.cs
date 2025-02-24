@@ -3,7 +3,6 @@ using System.Reflection;
 using Content.Scripts.Configs;
 using Content.Scripts.Factories;
 using Content.Scripts.Services;
-using Content.Scripts.States;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -47,7 +46,6 @@ namespace Content.Scripts.Installer
             _builder = builder;
             
             RegisterConfigs();
-            RegisterStates();
             RegisterFactories();
             RegisterServices();
         }
@@ -63,18 +61,11 @@ namespace Content.Scripts.Installer
             }
         }
         
-        private void RegisterStates()
-        {
-            Reg<NullState>();
-            Reg<PlayerState>();
-            Reg<DiaryState>();
-        }
-        
         private void RegisterFactories()
         {
             Reg<ViewModelFactory>();
             Reg<ViewFactory>();
-            Reg<ControllerFactory>();
+            Reg<EntityFactory>();
         }
 
         private void RegisterServices()

@@ -432,6 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifetimeScope: {fileID: 1254055716}
+  _configsAssetLabel:
+    m_LabelString: Configs
 --- !u!4 &1300069693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8568779699151069878, guid: 79f4e2fe7db62af4191d317272a5416f, type: 3}

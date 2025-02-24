@@ -1,9 +1,7 @@
-using UnityEngine;
-
 namespace Content.Scripts.Controllers
 {
-    public abstract class Controller : MonoBehaviour
+    public abstract class Controller
     {
-        public virtual void Init() {}
+
     }
 }

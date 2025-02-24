@@ -1,21 +1,26 @@
 using Content.Scripts.Configs;
-using Content.Scripts.States;
 using VContainer;
+using State = Content.Scripts.States.State;
 
 namespace Content.Scripts.Services
 {
-    public abstract class Service<TConfig, TState> : IService
+    public abstract class Service<TConfig, TState> : Service
         where TConfig : Config
-        where TState : State
+        where TState : State, new()
     {
         public TConfig Config { get; private set; }
-        public TState State { get; private set; }
+
+        public override State State => new TState();
         
         [Inject]
-        public void Inject(TConfig config, TState state)
+        private void Inject(TConfig config)
         {
             Config = config;
-            State = state;
         }
+    }
+
+    public abstract class Service : IService
+    {
+        public abstract State State { get; }
     }
 }

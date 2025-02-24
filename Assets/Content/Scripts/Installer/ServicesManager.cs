@@ -7,16 +7,18 @@ namespace Content.Scripts.Installer
 {
     public class ServicesManager
     {
-        private IReadOnlyList<IService> _services;
+        private SavingService _savingService;
         private IReadOnlyList<IInitializable> _initializableServices;
         private IReadOnlyList<ITickable> _tickableServices;
 
         [Inject]
-        public void Inject(IReadOnlyList<IService> services)
+        public void Inject(IReadOnlyList<IService> services, SavingService savingService)
         {
-            _services = services;
-            _initializableServices = _services.OfType<IInitializable>().ToList();
-            _tickableServices = _services.OfType<ITickable>().ToList();
+            _savingService = savingService;
+            _savingService.States = services.OfType<Service>().Select(s => s.State).ToList();
+            
+            _initializableServices = services.OfType<IInitializable>().ToList();
+            _tickableServices = services.OfType<ITickable>().ToList();
         }
         
         public void Awake()

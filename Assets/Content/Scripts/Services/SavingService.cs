@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Content.Scripts.Configs;
 using Content.Scripts.States;
 using Cysharp.Threading.Tasks;
@@ -7,22 +6,20 @@ using SaveSystem.Serializers;
 
 namespace Content.Scripts.Services
 {
-    public class SavingService : Service<NullConfig, NullState>
+    public class SavingService : Service<NullConfig, NullState>, IInitializable
     {
-        private readonly IReadOnlyList<State> _states;
+        public IReadOnlyList<State> States;
         
         private readonly SaveContext _saveContext = new JsonSaveContextLocal(new JsonSerializer());
         
-        private SavingService(IReadOnlyList<IState> states)
+        public void Init()
         {
-            _states = states.OfType<State>().ToList();
-
             CreateData();
         }
 
         private void CreateData()
         {
-            foreach (var state in _states)
+            foreach (var state in States)
             {
                 state.SaveContext = _saveContext;
                 state.AddData();
@@ -31,7 +28,7 @@ namespace Content.Scripts.Services
         
         public async UniTask Save()
         {
-            foreach (var state in _states)
+            foreach (var state in States)
             {
                 state.Write();
             }
@@ -43,7 +40,7 @@ namespace Content.Scripts.Services
         {
             await _saveContext.Load();
             
-            foreach (var state in _states)
+            foreach (var state in States)
             {
                 state.Read();
             }
