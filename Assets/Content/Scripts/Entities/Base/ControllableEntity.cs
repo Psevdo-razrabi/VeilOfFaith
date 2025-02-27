@@ -5,7 +5,12 @@ namespace Content.Scripts.Entities
     public class ControllableEntity<TController> : ControllableEntity 
         where TController : Controller
     {
-        protected TController Controller => BaseController as TController;
+        protected TController Controller;
+
+        public override void Init()
+        {
+            Controller = BaseController as TController;
+        }
     }
 
     public class ControllableEntity : Entity

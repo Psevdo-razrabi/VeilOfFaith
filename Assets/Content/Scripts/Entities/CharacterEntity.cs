@@ -23,6 +23,8 @@ namespace Content.Scripts.Entities
     
         public override void Init()
         {
+            base.Init();
+            
             _playerService.Ticked.Subscribe(Tick);
             Cursor.lockState = CursorLockMode.Locked;
         
