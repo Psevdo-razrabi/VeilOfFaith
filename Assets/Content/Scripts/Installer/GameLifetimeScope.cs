@@ -57,32 +57,32 @@ namespace Content.Scripts.Installer
             var configs = Addressables.LoadAssetsAsync<Config>(_configsAssetLabel, null).WaitForCompletion().ToList();
             foreach (var config in configs)
             {
-                Reg(config);
+                Register(config);
             }
         }
         
         private void RegisterFactories()
         {
-            Reg<ViewModelFactory>();
-            Reg<ViewFactory>();
-            Reg<EntityFactory>();
+            Register<ViewModelFactory>();
+            Register<ViewFactory>();
+            Register<EntityFactory>();
         }
 
         private void RegisterServices()
         {
-            Reg<ViewsService>();
-            Reg<ScenesService>();
-            Reg<PlayerService>();
-            Reg<SavingService>();
-            Reg<InputService>();
+            Register<ViewsService>();
+            Register<ScenesService>();
+            Register<PlayerService>();
+            Register<SavingService>();
+            Register<InputService>();
         }
         
-        private void Reg<T>() where T : class
+        private void Register<T>() where T : class
         {
             _builder.Register<T>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
         }
         
-        private void Reg<T>(T instance) where T : class
+        private void Register<T>(T instance) where T : class
         {
             _builder.RegisterInstance(instance).AsImplementedInterfaces().AsSelf();
         }

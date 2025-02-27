@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using Cysharp.Threading.Tasks;
-using SaveSystem;
 using UnityEngine;
 using Content.Scripts.StatesData;
+using SaveSystem;
 
 namespace Content.Scripts.Services
 {
@@ -47,9 +47,9 @@ namespace Content.Scripts.Services
         }
 
         public override string GetFilePath() =>
-            Path.Combine(_dataPath, string.Concat(FileName, $"SlotTest", ".", _fileExtension));
+            Path.Combine(_dataPath, string.Concat(FileName, $"SaveData", ".", _fileExtension));
 
         public override string GetFileName() 
-            => Path.Combine(string.Concat(FileName, $"SlotTest", ".", _fileExtension));
+            => Path.Combine(string.Concat(FileName, $"SaveData", ".", _fileExtension));
     }
 }

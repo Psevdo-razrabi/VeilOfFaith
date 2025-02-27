@@ -21,11 +21,7 @@ namespace Content.Scripts.Installer
             
             _servicesManager.Awake();
             
-            var viewsService = _lifetimeScope.Container.Resolve<ViewsService>();
-            viewsService.Initialize();
-            
-            var controllerFactory = _lifetimeScope.Container.Resolve<EntityFactory>();
-            controllerFactory.CreateControllableEntity<CharacterEntity, PlayerController>();
+            InitGame();
         }
 
         private void Update()
@@ -43,6 +39,15 @@ namespace Content.Scripts.Installer
                 var savingService = _lifetimeScope.Container.Resolve<SavingService>();
                 savingService.Load();
             }
+        }
+
+        private void InitGame()
+        {
+            var viewsService = _lifetimeScope.Container.Resolve<ViewsService>();
+            viewsService.Initialize();
+            
+            var controllerFactory = _lifetimeScope.Container.Resolve<EntityFactory>();
+            controllerFactory.CreateControllableEntity<CharacterEntity, PlayerController>();
         }
     }
 }

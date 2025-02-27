@@ -1,6 +1,5 @@
 ﻿using System;
 using Content.Scripts.Factories;
-using Game.MVVM;
 using R3;
 using UnityEngine;
 using VContainer;

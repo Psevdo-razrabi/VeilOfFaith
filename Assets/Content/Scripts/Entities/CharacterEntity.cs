@@ -13,6 +13,7 @@ namespace Content.Scripts.Entities
         private PlayerService _playerService;
     
         private float _verticalRotation;
+        private const float _verticalBoards = 89f;
     
         [Inject]
         private void Inject(PlayerService playerService)
@@ -40,7 +41,7 @@ namespace Content.Scripts.Entities
             transform.Rotate(0, rotHorizontal, 0);
         
             _verticalRotation -= Controller.LookDirection.y * _playerService.Config.RotateSpeed;
-            _verticalRotation = Mathf.Clamp(_verticalRotation, -89, 89);
+            _verticalRotation = Mathf.Clamp(_verticalRotation, -_verticalBoards, _verticalBoards);
             _camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0, 0);
         }
     
